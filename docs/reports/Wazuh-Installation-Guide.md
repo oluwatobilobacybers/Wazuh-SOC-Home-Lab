@@ -1,84 +1,156 @@
-# Wazuh SIEM Installation Guide
+# Wazuh Installation Guide
 
 ## Objective
 
-Deploy a Security Information and Event Management (SIEM) platform using Wazuh to monitor endpoints, detect security events, and perform incident analysis.
+Deploy a single-node Wazuh SIEM environment capable of collecting logs, monitoring endpoints, detecting security events, and generating alerts for incident analysis.
 
 ---
 
-## Lab Environment
+# Lab Environment
 
-| Component | Details |
-|-----------|---------|
-| Hypervisor | VirtualBox |
-| SIEM | Wazuh 4.x |
-| Dashboard | Wazuh Dashboard |
-| Operating System | Ubuntu Server |
-| Monitoring Agent | Wazuh Agent |
-| Attacker Machine | Kali Linux |
-| Target Machine | Metasploitable 2 |
+| Component | Specification |
+|-----------|---------------|
+| Hypervisor | Oracle VirtualBox |
+| Wazuh Server | Ubuntu Server 24.04 LTS |
+| Analyst Workstation | Kali Linux |
+| Victim Machine | Metasploitable 2 |
+| SIEM Version | Wazuh 4.14.x |
 
 ---
 
-## Installation Steps
+# Network Topology
 
-### Step 1
+| Machine | IP Address | Role |
+|----------|------------|------|
+| Kali Linux | 172.20.10.4 | SOC Analyst |
+| Ubuntu Server | 172.20.10.3 | Wazuh Server |
+| Metasploitable2 | 172.20.10.x | Target System |
 
-Updated Ubuntu Server.
+---
+
+# Installation Procedure
+
+## 1. Ubuntu Server Installation
+
+- Installed Ubuntu Server 24.04 LTS
+- Configured OpenSSH
+- Assigned static IP address
+- Updated all packages
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
 
-### Step 2
+---
 
-Downloaded the Wazuh installer.
+## 2. System Preparation
+
+Installed required dependencies.
 
 ```bash
-curl -sO https://packages.wazuh.com/4.8/wazuh-install.sh
+sudo apt install curl unzip wget apt-transport-https gnupg lsb-release ca-certificates software-properties-common -y
 ```
 
-### Step 3
+Configured kernel parameters.
 
-Executed the installation.
+```bash
+sudo sysctl -w vm.max_map_count=262144
+```
+
+Made the configuration persistent.
+
+```bash
+echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+```
+
+---
+
+## 3. Wazuh Installation
+
+Downloaded the official installer.
+
+```bash
+curl -sO https://packages.wazuh.com/4.x/wazuh-install.sh
+```
+
+Executed the installer.
 
 ```bash
 sudo bash wazuh-install.sh -a
 ```
 
-### Step 4
+---
 
-Verified installation.
+## 4. Services Verification
+
+Verified all services.
 
 ```bash
-systemctl status wazuh-manager
-```
-
-### Step 5
-
-Logged into the dashboard.
-
-```
-https://<Server-IP>
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
 ```
 
 ---
 
-## Result
+## 5. Agent Deployment
 
-The Wazuh Dashboard was successfully deployed.
+Installed the Wazuh agent on Ubuntu Server.
 
-The Manager, Indexer and Dashboard services were operational.
+Imported the agent key generated from the Wazuh Manager.
 
-Endpoints were successfully connected to the SIEM platform.
+Restarted the agent.
+
+```bash
+sudo systemctl restart wazuh-agent
+```
+
+Verified communication.
+
+```bash
+sudo /var/ossec/bin/agent_control -l
+```
+
+The agent appeared as **Active**.
 
 ---
 
-## Skills Demonstrated
+# Verification
 
-- Ubuntu Administration
-- SIEM Deployment
-- Wazuh Installation
+Verified:
+
+- Wazuh Dashboard accessible
+- Wazuh Manager running
+- Wazuh Indexer running
+- Wazuh Dashboard running
+- Wazuh Agent connected
+- File Integrity Monitoring operational
+
+---
+
+# Outcome
+
+Successfully deployed a functional Wazuh SIEM lab capable of:
+
+- Endpoint monitoring
+- File Integrity Monitoring (FIM)
+- Log collection
+- Security event monitoring
+- Alert generation
+- Incident investigation
+
+---
+
+# Skills Demonstrated
+
+- Ubuntu Server Administration
 - Linux Administration
+- Wazuh Deployment
+- SIEM Administration
+- Endpoint Monitoring
 - Security Monitoring
+- Agent Management
+- Incident Detection
+- GitHub Documentation
