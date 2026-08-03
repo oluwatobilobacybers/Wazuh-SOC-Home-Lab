@@ -1,38 +1,51 @@
-# 🛡️ Wazuh SOC Home Lab
+# Wazuh-SOC-Home-Lab
 
-A hands-on Security Operations Center (SOC) home lab built to simulate real-world security monitoring, threat detection, and incident response using Wazuh SIEM.
+A hands-on Security Operations Center (SOC) home lab built to simulate real-world enterprise monitoring using **Wazuh SIEM**, **Ubuntu Server**, **Kali Linux**, and **Metasploitable 2**.
 
-This project demonstrates the deployment, configuration, and operation of a Wazuh-based SOC environment running on virtual machines, with security monitoring performed against a vulnerable target system.
-
----
-
-# 📌 Project Overview
-
-The objective of this project is to build a functional SOC environment capable of:
-
-- Deploying and configuring Wazuh SIEM
-- Monitoring Linux endpoints
-- Detecting File Integrity Monitoring (FIM) events
-- Collecting and analyzing security logs
-- Investigating security alerts
-- Practicing basic incident response workflows
+This project demonstrates endpoint monitoring, file integrity monitoring (FIM), log analysis, vulnerability detection, and incident investigation in a controlled lab environment.
 
 ---
 
-# 🏗️ Lab Architecture
+# Project Overview
 
-| Component | Role |
-|-----------|------|
-| Kali Linux | Security administration workstation |
-| Ubuntu Server | Wazuh Server |
-| Wazuh Dashboard | Security monitoring dashboard |
-| Wazuh Indexer | Alert storage and search |
-| Metasploitable 2 | Vulnerable monitored endpoint |
-| VirtualBox | Virtualization platform |
+This lab was designed to provide practical SOC experience by building and configuring a Security Information and Event Management (SIEM) solution from scratch.
+
+The objective is to simulate enterprise monitoring while documenting every step, investigation, and alert generated throughout the project.
 
 ---
 
-# 🛠️ Technologies Used
+# Lab Architecture
+
+```
+                    +----------------------+
+                    |      Kali Linux      |
+                    |  Security Analyst    |
+                    +----------+-----------+
+                               |
+                               |
+                    HTTPS (Dashboard)
+                               |
+                               |
+                +--------------+--------------+
+                |     Ubuntu Server           |
+                |       Wazuh Server          |
+                |-----------------------------|
+                | Wazuh Manager               |
+                | Wazuh Dashboard             |
+                | Wazuh Indexer              |
+                +--------------+--------------+
+                               |
+                -------------------------------
+                |                             |
+                |                             |
+        Wazuh Agent                  Wazuh Agent
+                |                             |
+        Ubuntu Endpoint          Metasploitable 2
+```
+
+---
+
+# Technologies Used
 
 - Wazuh SIEM
 - Ubuntu Server
@@ -40,118 +53,108 @@ The objective of this project is to build a functional SOC environment capable o
 - Metasploitable 2
 - VirtualBox
 - Linux
-- Syscheck (File Integrity Monitoring)
-- Wazuh Dashboard
-- Wazuh API
-
----
-
-# 🔐 Security Features Implemented
-
-- Endpoint Monitoring
+- SSH
 - File Integrity Monitoring (FIM)
-- Security Event Monitoring
-- Log Collection
-- Agent Management
-- Alert Investigation
-- Rule-Based Detection
+- Syscheck
+- Git
+- GitHub
 
 ---
 
-# 📂 Repository Structure
+# Skills Demonstrated
 
-```
-Wazuh-SOC-Home-Lab
-│
-├── README.md
-├── LICENSE
-│
-└── docs
-    ├── configs
-    ├── diagrams
-    ├── reports
-    └── screenshots
-```
-
----
-
-# 📑 Documentation
-
-Documentation for this project will include:
-
-- Lab Architecture
-- Installation Guide
-- Configuration Guide
-- File Integrity Monitoring
-- Alert Investigation
-- Incident Response
-- Lessons Learned
-
----
-
-# 📸 Screenshots
-
-The following screenshots will be added during the project:
-
-- Wazuh Dashboard
-- Agent Status
-- Security Events
-- File Integrity Monitoring
-- Alert Details
-- Rule Information
-- MITRE ATT&CK Mapping
-
----
-
-# 🎯 Skills Demonstrated
-
-- Security Operations Center (SOC)
-- SIEM Administration
-- Linux Administration
-- Endpoint Monitoring
-- Threat Detection
-- Incident Analysis
+- SIEM Deployment
 - Security Monitoring
-- Log Analysis
-- Vulnerability Lab Management
+- Linux Administration
+- Threat Detection
+- Endpoint Monitoring
+- File Integrity Monitoring
+- Incident Investigation
+- Alert Analysis
+- Log Management
+- Security Documentation
+- Git Version Control
 
 ---
 
-# 🚀 Future Enhancements
+# Lab Components
 
-Planned improvements include:
+| Component | Purpose |
+|-----------|----------|
+| Kali Linux | SOC Analyst workstation |
+| Ubuntu Server | Wazuh Manager, Dashboard & Indexer |
+| Metasploitable 2 | Vulnerable endpoint |
+| Wazuh Agent | Endpoint monitoring |
+| Wazuh Dashboard | Alert visualization |
 
-- Active Directory Integration
-- Windows Endpoint Monitoring
+---
+
+# Project Structure
+
+```
+docs/
+│
+├── reports/
+├── screenshots/
+├── diagrams/
+└── configs/
+```
+
+---
+
+# Current Progress
+
+- [x] Ubuntu Server Installed
+- [x] Wazuh Installed
+- [x] Wazuh Dashboard Configured
+- [x] Wazuh Agent Installed
+- [x] File Integrity Monitoring Configured
+- [x] Test Alerts Generated
+- [x] GitHub Repository Created
+
+---
+
+# Planned Improvements
+
 - Sysmon Integration
-- Suricata IDS
+- Suricata Integration
+- YARA Integration
 - Sigma Rules
-- MITRE ATT&CK Detection Mapping
-- Malware Analysis Integration
-- Threat Hunting Scenarios
-- Kubernetes Security Monitoring
-- OpenShift Security Monitoring
+- Active Response
+- MITRE ATT&CK Mapping
+- Vulnerability Detection
+- Docker Monitoring
+- Kubernetes Monitoring
+- OpenShift Monitoring
 
 ---
 
-# 👨‍💻 Author
+# Screenshots
+
+Screenshots will be uploaded as the project progresses.
+
+---
+
+# Documentation
+
+Detailed implementation guides will be added under the **docs** directory.
+
+---
+
+# Author
 
 **Banjo Oluwatobiloba Adekunle**
 
-Aspiring SOC Analyst | Cybersecurity Professional
-
-**Certifications**
-
-- CompTIA Security+
-- ISC² Certified in Cybersecurity (CC)
+Aspiring SOC Analyst | Security+ | ISC² Certified in Cybersecurity (CC)
 
 GitHub:
 https://github.com/oluwatobilobacybers
 
+LinkedIn:
+https://linkedin.com/in/oluwatobiloba-banjo
+
 ---
 
-## ⭐ Project Status
+# Disclaimer
 
-🚧 Work in Progress
-
-This repository is actively being updated as additional security monitoring scenarios and incident response exercises are completed.
+This project was created for educational and defensive cybersecurity purposes only.
