@@ -92,15 +92,44 @@ The objective is to simulate enterprise monitoring while documenting every step,
 # Project Structure
 
 ```
-docs/
+Wazuh-SOC-Home-Lab/
 │
-├── reports/
-├── screenshots/
-├── diagrams/
-└── configs/
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── 01-Lab-Overview/
+│   ├── Lab-Objectives.md
+│   ├── Architecture.md
+│   └── Technologies.md
+│
+├── 02-Lab-Setup/
+│   ├── VMware-Configuration.md
+│   ├── Network-Configuration.md
+│   ├── Wazuh-Installation.md
+│   ├── Ubuntu-Agent-Installation.md
+│   └── Screenshots/
+│
+├── 03-Agent-Enrollment/
+│   ├── Agent-Registration.md
+│   ├── Troubleshooting.md
+│   └── Screenshots/
+│
+├── 04-Detection-Lab/
+│
+├── 05-Attack-Simulation/
+│
+├── 06-Incident-Response/
+│
+├── 07-Custom-Rules/
+│
+├── 08-Dashboards/
+│
+├── 09-Network-Diagram/
+│
+└── Images/
 ```
 
----
 
 # Current Progress
 
@@ -129,15 +158,40 @@ docs/
 
 ---
 
-# Screenshots
+## 📸 Project Screenshots
 
-Screenshots will be uploaded as the project progresses.
+### Wazuh Dashboard
+
+![Dashboard](docs/screenshots/dashboard-home.png)
 
 ---
+
+### Connected Agents
+
+![Agents](docs/screenshots/agents-active.png)
+
+---
+
+### File Integrity Monitoring
+
+![FIM](docs/screenshots/fim-alert.png)
+
+---
+
+### Security Events
+
+![Events](docs/screenshots/security-events.png)
 
 # Documentation
 
 Detailed implementation guides will be added under the **docs** directory.
+
+
+## 📚 Documentation
+
+- [Wazuh Installation Guide](docs/reports/Wazuh-Installation-Guide.md)
+- [File Integrity Monitoring](docs/reports/File-Integrity-Monitoring.md)
+- [Alert Investigation](docs/reports/Alert-Investigation.md)
 
 ---
 
