@@ -1,0 +1,118 @@
+# Network Reconnaissance — Metasploitable 2
+
+## Overview
+
+This phase documents the initial reconnaissance performed against the
+Metasploitable 2 virtual machine within the isolated Wazuh SOC home lab.
+
+The objective was to identify:
+
+- Host availability
+- Open TCP ports
+- Running services
+- Service versions
+- Potential attack surfaces
+
+All reconnaissance was performed against the intentionally vulnerable
+Metasploitable 2 system inside the isolated laboratory network.
+
+## Lab Environment
+
+| System | IP Address | Role |
+|---|---|---|
+| Kali Linux | 172.20.10.4 | SOC / Security Testing Platform |
+| Metasploitable 2 | 172.20.10.2 | Vulnerable Target |
+| Ubuntu Server | 172.20.10.5 | Monitored Endpoint |
+
+## Connectivity Validation
+
+Before performing reconnaissance, connectivity to the target was verified.
+
+```bash
+ping -c 4 172.20.10.2
+
+4 packets transmitted
+4 packets received
+0% packet loss
+
+This confirmed that the target was reachable from the Kali Linux
+security testing platform.
+
+# Nmap Service Discovery
+
+The following Nmap command was used:
+sudo nmap -sS -sV 172.20.10.2
+
+# Scan Options
+
+| Option | Purpose                   |
+| ------ | ------------------------- |
+| `-sS`  | TCP SYN scan              |
+| `-sV`  | Service/version detection |
+
+# Discovered Services
+
+Port	State	Service	Version
+21	open	FTP	vsftpd 2.3.4
+22	open	SSH	OpenSSH 4.7p1
+23	open	Telnet	Linux telnetd
+25	open	SMTP	Postfix smtpd
+53	open	DNS	ISC BIND 9.4.2
+80	open	HTTP	Apache 2.2.8
+111	open	RPC	rpcbind
+139	open	NetBIOS/SMB	Samba
+445	open	SMB	Samba
+512	open	rexec	netkit-rsh
+513	open	rlogin	OpenBSD/Solaris
+514	open	rsh	Netkit rshd
+1099	open	Java RMI	GNU Classpath
+1524	open	bindshell	Metasploitable
+2049	open	NFS	NFS 2–4
+2121	open	FTP	ProFTPD 1.3.1
+3306	open	MySQL	5.0.51a
+5432	open	PostgreSQL	8.3.x
+5900	open	VNC	Protocol 3.3
+6000	open	X11	Access denied
+6667	open	IRC	UnrealIRCd
+8009	open	AJP13	Apache Jserv
+8180	open	HTTP	Apache Tomcat
+
+# Initial Attack Surface Assessment
+
+The reconnaissance identified multiple network services that may represent
+potential attack surfaces.
+
+Particularly notable services include:
+
+- FTP
+- Telnet
+- SMB
+- RSH/RLOGIN
+- NFS
+- Java RMI
+- MySQL
+- PostgreSQL
+- VNC
+- IRC
+- Apache
+- Apache Tomcat
+- AJP13
+
+Because Metasploitable 2 is intentionally vulnerable, these services will
+be examined during subsequent controlled security testing.
+
+No exploitation was performed during this reconnaissance phase.
+
+# Security Objective
+
+The objective of the next phase is to determine whether selected exposed
+services contain exploitable weaknesses and whether Wazuh can detect
+security-relevant activity generated during controlled testing.
+
+# Evidence
+Network Connectivity and Nmap Service Discovery
+
+![Network Connectivity and Nmap Result](Screenshots/network-connectivity-nmap-output.png)
+
+
+
