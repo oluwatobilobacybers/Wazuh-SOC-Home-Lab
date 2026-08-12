@@ -6,7 +6,7 @@ The project focuses on practical security operations, including SIEM deployment,
 
 > 🚧 **Project Status: Active Development**
 
----
+
 
 # Project Overview
 
@@ -18,7 +18,7 @@ The lab is designed to simulate the workflow of a SOC analyst:
 
 Every major configuration, troubleshooting process, security event, and investigation is being documented to demonstrate practical cybersecurity capability rather than certification knowledge alone.
 
----
+
 
 # Lab Objectives
 
@@ -39,7 +39,7 @@ The primary objectives of the lab are to:
 - Practice incident investigation and response.
 - Document the complete SOC workflow using Git and GitHub.
 
----
+
 
 # Lab Environment
 
@@ -56,13 +56,13 @@ The primary objectives of the lab are to:
 | SIEM Platform | Wazuh 4.14.x |
 | Network | Isolated Virtual Lab Network |
 
----
+
 
 # Lab Architecture
 
 The current lab consists of three primary virtual machines:
 
-```text
+
                       SOC ANALYST WORKSTATION
                            Windows 11 Host
                                 |
@@ -97,7 +97,7 @@ The current lab consists of three primary virtual machines:
        | Vulnerable Target     |
        +-----------------------+
 
----
+
 
                     WAZUH SOC HOME LAB
                            │
@@ -114,32 +114,33 @@ The current lab consists of three primary virtual machines:
                            ▼
                  ┌───────────────────┐
                  │ 03 Agent          │
-                 │    Enrollment ✅  │
+                 │    Enrollment✅  │
                  └─────────┬─────────┘
                            ▼
-                 ┌───────────────────┐
-                 │ 04 Detection Lab  │
-                 │                   │
-                 │ FIM          ✅   │
-                 │ SCA          ✅   │
-                 │ Log Analysis 🔄   │
-                 └─────────┬─────────┘
-                           ▼
-                 ┌───────────────────┐
-                 │ 05 Attack         │
-                 │    Simulation     │
-                 │       NEXT        │
-                 └─────────┬─────────┘
-                           ▼
-                 ┌───────────────────┐
-                 │ 06 Incident       │
-                 │    Response       │
-                 └─────────┬─────────┘
-                           ▼
-                 ┌───────────────────┐
-                 │ 07 Custom Rules   │
-                 └─────────┬─────────┘
-                           ▼
+                ┌───────────────────┐
+                │ 04 Detection Lab  │
+                │                   │
+                │ FIM          ✅   │
+                │ SCA          ✅   │
+                │ Log Analysis ✅  │
+                └─────────┬─────────┘
+                          ▼
+                ┌───────────────────┐
+                │ 05 Attack         │
+                │    Simulation     │
+                │       🔄          │
+                └─────────┬─────────┘
+                          ▼
+                ┌───────────────────┐
+                │ 06 Incident       │
+                │    Response       │
+                │       🔄          │
+                └─────────┬─────────┘
+                          ▼
+                ┌───────────────────┐
+                │ 07 Custom Rules   │
+                │       🔜          │
+                └─────────┬─────────┘                           ▼
                  ┌───────────────────┐
                  │ 08 Dashboards     │
                  └─────────┬─────────┘
@@ -148,6 +149,7 @@ The current lab consists of three primary virtual machines:
                  │ 09 Network        │
                  │    Architecture   │
                  └───────────────────┘
+
 
 # Network Roles
 
@@ -168,6 +170,7 @@ The Metasploitable 2 system is intentionally vulnerable and will only be used wi
 - Kali Linux
 - Ubuntu Server 24.04 LTS
 - Metasploitable 2
+
 
 ### Security Technologies
 - Wazuh SIEM
@@ -199,7 +202,7 @@ The Metasploitable 2 system is intentionally vulnerable and will only be used wi
 - GitHub
 - Markdown
 
----
+
 
 # Skills Demonstrated
 
@@ -221,22 +224,24 @@ The Metasploitable 2 system is intentionally vulnerable and will only be used wi
 - Wireshark
 - Nessus
 - Metasploit
-```
+
+
+
 # Lab Components
 
-| Component | Purpose |
-|-----------|----------|
-| Kali Linux | SOC Analyst workstation |
-| Ubuntu Server | Wazuh Manager, Dashboard & Indexer |
-| Metasploitable 2 | Vulnerable endpoint |
-| Wazuh Agent | Endpoint monitoring |
-| Wazuh Dashboard | Alert visualization |
----
+| Component        | Purpose                            |
+| ---------------- | ---------------------------------- |
+| Kali Linux       | Wazuh Manager, Indexer & Dashboard / SOC Platform |
+| Ubuntu Server    | Monitored Wazuh Endpoint           |
+| Metasploitable 2 | Deliberately vulnerable target    |
+| Wazuh Agent      | Endpoint monitoring                |
+| Wazuh Dashboard  | Security alert visualization       |
+
 
 
 # Project Structure
 
-```text
+```
 Wazuh-SOC-Home-Lab/
 │
 ├── README.md
@@ -273,16 +278,15 @@ Wazuh-SOC-Home-Lab/
 │   └── 09-Network-Diagram/
 │
 ├── Images/
-└── ...
+└── 
 ```
+
 
 ### Detection & Investigation
 
 - [File Integrity Monitoring](docs/04-Detection-Lab/File-Integrity-Monitoring.md)
-- Detection Lab — In Progress
-- Attack Simulation — In Progress
-- Incident Response — In Progress
-- Custom Detection Rules — In Progress
+- [Exercise 2 – SSH Brute-Force Detection & Firewall-drop Active Response](docs/04-Detection-Lab/Active-Response-Firewall-Drop.md)
+- Exercise 3 – Endpoint Security Event Investigation — In Progress
 
 # Documentation Philosophy
 
@@ -300,9 +304,19 @@ Troubleshooting experiences are also documented because real-world SOC and secur
 
 The objective is therefore to demonstrate problem-solving ability, troubleshooting methodology, and operational understanding, not simply the ability to follow installation instructions.
 
+# Exercise Progress
+
+| Exercise | Topic | Status |
+|----------|-------|--------|
+| Exercise 1 | File Integrity Monitoring | ✅ Completed |
+| Exercise 2 | SSH Brute-Force Detection & Firewall-drop Active Response | ✅ Completed* |
+| Exercise 3 | Endpoint Security Event Investigation | 🚧 In Progress |
+
+\* Firewall-drop containment, Rule 651 host blocking, delete operation, and final firewall state were verified. Direct evidence of Rule 652 – Host Unblocked by firewall-drop Active Response remains pending.
+
+
 # Current Progress
 
-- [x] Completed
 - [x] VirtualBox laboratory environment configured
 - [x] Kali Linux configured
 - [x] Ubuntu Server 24.04 LTS deployed
@@ -310,7 +324,7 @@ The objective is therefore to demonstrate problem-solving ability, troubleshooti
 - [x] Wazuh Manager installed
 - [x] Wazuh Indexer installed
 - [x] Wazuh Dashboard installed
-- [x] Wazuh Manager, Indexer, and Dashboard services validated
+- [x] Wazuh services validated
 - [x] Wazuh Agent installed on Ubuntu
 - [x] Ubuntu Agent enrolled with Wazuh Manager
 - [x] Manager-Agent connectivity verified
@@ -319,35 +333,47 @@ The objective is therefore to demonstrate problem-solving ability, troubleshooti
 - [x] SSH administration from Windows PowerShell configured
 - [x] Wazuh service management and troubleshooting documented
 - [x] GitHub repository established
+
+### Detection & Investigation
+
 - [x] File Integrity Monitoring configured
 - [x] FIM file creation detection validated
 - [x] FIM file modification detection validated
 - [x] FIM file deletion detection validated
 - [x] Wazuh FIM alerts investigated
----
+- [x] Metasploitable 2 network reconnaissance completed
+- [x] vsftpd 2.3.4 service identified
+- [x] CVE-2011-2523 vulnerability verified in the controlled lab
+- [x] Vulnerability assessment documented
+- [x] SSH authentication failure detection validated
+- [x] Wazuh Rule 2502 detection investigated
+- [x] Firewall-drop Active Response configured and triggered
+- [x] Firewall-drop source IP containment validated
+- [x] Wazuh Rule 651 host-blocking event verified
+- [x] Firewall-drop delete operation verified
+- [x] Final iptables and nftables state verified
+- [ ] Wazuh Rule 652 unblocking alert requires direct evidence
+
 
 # In Progress
 
-- [ ] Document FIM implementation and investigation
-- [ ] Complete custom Active Response validation
-- [ ] Endpoint security event investigation
-- [ ] Metasploitable 2 monitoring
-- [ ] Vulnerability assessment
-- [ ] Controlled attack simulation
-- [ ] Detection engineering
-- [ ] Custom Wazuh rules
-- [ ] Incident response workflow
-- [ ] SOC investigation reports
+- [ ] Exercise 3 – Endpoint Security Event Investigation
+- [ ] Document Exercise 3 procedure and evidence
+- [ ] Validate and investigate additional endpoint security events
+
 
 # Planned
+
 - [ ] MITRE ATT&CK mapping
-- [ ] Active Response
+- [ ] Custom Wazuh detection rules
 - [ ] Suricata integration
 - [ ] YARA integration
 - [ ] Sigma rules
 - [ ] Additional endpoint telemetry
+- [ ] Sysmon integration
 - [ ] Docker monitoring
 - [ ] Kubernetes monitoring
+- [ ] OpenShift monitoring
 
 # Skills Demonstrated
 
@@ -369,6 +395,7 @@ The objective is therefore to demonstrate problem-solving ability, troubleshooti
 - Security Documentation
 - Git & GitHub
 
+
 # Planned Improvements
 
 - Sysmon Integration
@@ -382,7 +409,7 @@ The objective is therefore to demonstrate problem-solving ability, troubleshooti
 - Kubernetes Monitoring
 - OpenShift Monitoring
 
----
+
 
 # Lessons Learned
 
@@ -398,6 +425,7 @@ Throughout the project, several important lessons have emerged:
 - Practical hands-on troubleshooting provides deeper understanding than theoretical study alone.
 - Proper documentation is an important part of professional security operations.
 
+
 ## 📸 Project Screenshots
 
 Screenshots documenting the lab will be stored under the appropriate documentation directories.
@@ -406,19 +434,17 @@ Screenshots documenting the lab will be stored under the appropriate documentati
 
 ![Dashboard](docs/screenshots/dashboard-home.png)
 
----
 
 ### Connected Agents
 
 ![Agents](docs/screenshots/agents-active.png)
 
----
 
 ### File Integrity Monitoring
 
 ![FIM](docs/screenshots/fim-alert.png)
 
----
+
 
 ### Security Events
 
@@ -448,7 +474,6 @@ Detailed implementation guides will be added under the **docs** directory.
 - Incident Response — In Progress
 - Custom Detection Rules — In Progress
 
----
 
 # Author
 
@@ -462,7 +487,6 @@ https://github.com/oluwatobilobacybers
 LinkedIn:
 https://linkedin.com/in/oluwatobiloba-banjo
 
----
 
 # Disclaimer
 
